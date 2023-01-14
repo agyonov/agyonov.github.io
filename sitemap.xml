@@ -1,35 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>/authors/jill.html</loc>
-<lastmod>2023-01-07T17:34:26+02:00</lastmod>
-</url>
-<url>
-<loc>/authors/ted.html</loc>
-<lastmod>2023-01-07T17:34:26+02:00</lastmod>
-</url>
-<url>
-<loc>/2018/08/20/bananas.html</loc>
-<lastmod>2018-08-20T00:00:00+03:00</lastmod>
-</url>
-<url>
-<loc>/2018/08/21/apples.html</loc>
-<lastmod>2018-08-21T00:00:00+03:00</lastmod>
-</url>
-<url>
-<loc>/2018/08/22/kiwifruit.html</loc>
-<lastmod>2018-08-22T00:00:00+03:00</lastmod>
-</url>
-<url>
-<loc>/about.html</loc>
-</url>
-<url>
-<loc>/blog.html</loc>
-</url>
-<url>
-<loc>/</loc>
-</url>
-<url>
-<loc>/staff.html</loc>
-</url>
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://www.agyonov.net</loc>
+        <xhtml:link
+               rel="alternate"
+               hreflang="en"
+               href="https://www.agyonov.net/en/"/>
+    </url>
+    <url>
+        <loc>https://www.agyonov.net/en/</loc>
+        <xhtml:link
+               rel="alternate"
+               hreflang="bg"
+               href="https://www.agyonov.net"/>
+    </url>
+    <url>
+        <loc>https://www.agyonov.net/bg/about/</loc>
+        <xhtml:link
+               rel="alternate"
+               hreflang="en"
+               href="https://www.agyonov.net/en/about/"/>
+    </url>
+    <url>
+        <loc>https://www.agyonov.net/en/about/</loc>
+        <xhtml:link
+               rel="alternate"
+               hreflang="bg"
+               href="https://www.agyonov.net/bg/about/"/>
+    </url>
+    <url>
+        <loc>https://www.agyonov.net/bg/blog/</loc>
+        <xhtml:link
+               rel="alternate"
+               hreflang="en"
+               href="https://www.agyonov.net/en/blog/"/>
+    </url>
+    <url>
+        <loc>https://www.agyonov.net/en/blog/</loc>
+        <xhtml:link
+               rel="alternate"
+               hreflang="bg"
+               href="https://www.agyonov.net/bg/blog/"/>
+    </url>
+    
+    <url>
+        <loc>https://www.agyonov.net/posts/angJsInitPartOne/</loc>
+    </url>
+    
+    <url>
+        <loc>https://www.agyonov.net/posts/angJsInitPartTwo/</loc>
+    </url>
+    
 </urlset>

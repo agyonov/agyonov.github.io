@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="description" content="Александър Гьонов - Програмист, софтуерен архитект, Българин, човек.">
+    <meta name="description" content="">
     <meta name="referrer" content="origin">
     <meta name="content-security-policy" content="default-src 'none';script-src 'self' 'unsafe-inline';style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;img-src 'self';media-src 'none';frame-src 'self';font-src 'self' data: https://fonts.gstatic.com;connect-src https://cdnjs.cloudflare.com 'self';child-src 'self';form-action 'self';frame-ancestors 'self';manifest-src 'none';worker-src 'none'">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preconnect stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"  rel="preconnect stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/railscasts.min.css" rel="preconnect stylesheet">
-    <title>Александър Гьонов</title>
+    <title>Блога на Александър Гьонов</title>
     <link rel="stylesheet" href="/css/site.css">
 </head>
 
@@ -27,7 +27,7 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 
                 
-                <li><a href="/bg/blog/" >БЛОГ</a>
+                <li><a href="/bg/blog/" class="current" >БЛОГ</a>
                 </li>
                 
                 
@@ -54,7 +54,7 @@
     
     
     <li>
-        <a href="/bg/blog/" ><i
+        <a href="/bg/blog/" class="current" ><i
                 class="material-icons">rss_feed</i>БЛОГ</a>
     </li>
     
@@ -91,20 +91,20 @@
     <li><a class="subheader">Език</a></li>
     <li>
         
-        <a href="/"><i class="material-icons">language</i>Български</a>
+        <a href="/bg/blog/"><i class="material-icons">language</i>Български</a>
         
     </li>
     <li>
-        <a href="/en/"><i class="material-icons">language</i>English</a>
+        <a href="/en/blog/"><i class="material-icons">language</i>English</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li><a class="subheader">Тема</a></li>
     <li>
-        <a href="/" id="toggleLigthM">
+        <a href="/bg/blog/" id="toggleLigthM">
             <i class="material-icons">light_mode</i>Светъл режим</a>
-        <a href="/" class="hide" id="toggleDarkM">
+        <a href="/bg/blog/" class="hide" id="toggleDarkM">
             <i class="material-icons">dark_mode</i>Тъмен режим</a>
     </li>
 </ul>
@@ -139,10 +139,10 @@
             <div class="flex-item">
                 [
                 
-                <span class="langLink"><a href="/" class="slink tooltipped"
+                <span class="langLink"><a href="/bg/blog/" class="slink tooltipped"
                         data-position="top" data-tooltip="Български">БГ</a></span>
                 
-                <span class="langLink"><a href="/en/" class="slink tooltipped"
+                <span class="langLink"><a href="/en/blog/" class="slink tooltipped"
                         data-position="top" data-tooltip="English">EN</a></span>
                 ]
             </div>
@@ -162,14 +162,36 @@
     <div class="col s12 m12 l9 xl10">
         <div class="container">
             
-<div class="indexPic">
-    <h1>Александър Гьонов</h1>
-    <img class="responsive-img" src="/img/home.jpg" alt="Александър Гьонов">
-</div>
+<h3> Блога на Александър Гьонов </h3>
 
-<p class="flow-text">Програмист, софтуерен архитект, Българин, човек.</p>
-<p class="flow-text">Създавам софтуерни системи, приложения и компоненти, които ми харесват. Поне в началото. <i class="material-icons">mood</i><br>По принцип компютрите ме обичат и аз тях - разбираме се взаимно.</p>
-<p class="flow-text">Живея в света, което, през по-голямата част от времето, намирам за вълнуващо предизвикателство, а понякога и за тъжно предизвикателство - по-малко или повече.</p>
+<div class="row"><div class="col s12 m9 l6 xl5">
+        <div class="card"><div class="card-image">
+                    <img src="/img/angJsInitPartTwo.jpg">
+                </div><div class="card-content">
+                <span class="card-title">Angular. Download of a third-party JavaScript library. Part Two.</span>
+                <p>14.02.2019 г.</p>
+                <br>
+                <p>Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part Two.</p>
+            </div>
+            <div class="card-action">
+                <a href="/posts/angJsInitPartTwo/">Към поста <i class="tiny material-icons">arrow_forward</i></a>
+                </div>
+        </div>
+    </div><div class="col s12 m9 l6 xl5">
+        <div class="card"><div class="card-image">
+                    <img src="/img/angJsInitPartOne.jpg">
+                </div><div class="card-content">
+                <span class="card-title">Angular. Download of a third-party JavaScript library. Part One.</span>
+                <p>7.02.2019 г.</p>
+                <br>
+                <p>Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part One.</p>
+            </div>
+            <div class="card-action">
+                <a href="/posts/angJsInitPartOne/">Към поста <i class="tiny material-icons">arrow_forward</i></a>
+                </div>
+        </div>
+    </div></div>
+
 
         </div>
     </div>

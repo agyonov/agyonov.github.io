@@ -1,0 +1,290 @@
+<!doctype html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="description" content="Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part Two.">
+    <meta name="referrer" content="origin">
+    <meta name="content-security-policy" content="default-src 'none';script-src 'self' 'unsafe-inline';style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;img-src 'self';media-src 'none';frame-src 'self';font-src 'self' data: https://fonts.gstatic.com;connect-src https://cdnjs.cloudflare.com 'self';child-src 'self';form-action 'self';frame-ancestors 'self';manifest-src 'none';worker-src 'none'">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='preconnect stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preconnect stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"  rel="preconnect stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/railscasts.min.css" rel="preconnect stylesheet">
+    <title>Angular. Download of a third-party JavaScript library. Part Two.</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+
+<body class="dark_body">
+
+    <!--Top Navbar-->
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">
+                <span class="logo_name">Александър Гьонов</span>
+            </a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                
+                
+                <li><a href="/bg/blog/" >БЛОГ</a>
+                </li>
+                
+                
+                <li><a href="/bg/about/" >ЗА МЕН</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!--Side nave for mobile-->
+<ul class="sidenav" id="mobile-demo">
+    <li>
+        <div class="user-view">
+            <div class="background" id="sidenav_header">
+                <img src="/img/side_background.jpg" alt="me_background">
+            </div>
+            <a href="/"><img src="/img/art_normal_small.png" alt="Александър Гьонов"
+                    class="circle responsive-img"></a>
+            <a href="/"><span class="white-text name">Здрасти, аз съм Сашо</span></a>
+        </div>
+    </li>
+    
+    
+    <li>
+        <a href="/bg/blog/" ><i
+                class="material-icons">rss_feed</i>БЛОГ</a>
+    </li>
+    
+    
+    <li>
+        <a href="/bg/about/" ><i
+                class="material-icons">person</i>ЗА МЕН</a>
+    </li>
+    
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Контакти</a></li>
+    <li>
+        <a href="https://hachyderm.io/@agionov" target="_blank" rel="noreferrer external noopener" title="Mastodon">
+            <i class="fa fa-brands fa-mastodon" style="font-size: 20px"></i>Mastodon</a>
+    </li>
+    <li>
+        <a href="https://twitter.com/agionov" target="_blank" rel="noreferrer external noopener" title="Twitter">
+            <i class="fa fa-brands fa-twitter" style="font-size: 20px"></i>Twitter</a>
+    </li>
+    <li>
+        <a href="https://www.linkedin.com/in/agionov" target="_blank" rel="noreferrer external noopener"
+            title="LinkedIn">
+            <i class="fa fa-brands fa-linkedin" style="font-size: 20px"></i>LinkedIn</a>
+    </li>
+    <li>
+        <a href="https://github.com/agyonov" target="_blank" rel="noreferrer external noopener" title="GitHub">
+            <i class="fa fa-brands fa-github" style="font-size: 20px"></i>GitHub</a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Език</a></li>
+    <li>
+        
+        <a href="/posts/angJsInitPartTwo/"><i class="material-icons">language</i>Български</a>
+        
+    </li>
+    <li>
+        <a href="/posts/angJsInitPartTwo/"><i class="material-icons">language</i>English</a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Тема</a></li>
+    <li>
+        <a href="/posts/angJsInitPartTwo/" id="toggleLigthM">
+            <i class="material-icons">light_mode</i>Светъл режим</a>
+        <a href="/posts/angJsInitPartTwo/" class="hide" id="toggleDarkM">
+            <i class="material-icons">dark_mode</i>Тъмен режим</a>
+    </li>
+</ul>
+
+<!-- Page Layout here -->
+<div class="row">
+    <div class="col l3 xl2 hide-on-med-and-down"> <!-- Note that "m4 l3" was added -->
+        <div class="flex-container" id="divLeftPane">
+            <div class="flex-item">
+                <div class="space_above">&nbsp;</div>
+                <img src="/img/art_normal_small.png" alt="Александър Гьонов" class="circle responsive-img">
+                <h5>Здрасти, аз съм Сашо</h5>
+            </div>
+            <div class="flex-item">
+                <h6>Контакти</h6>
+                <div class="contacts">
+                    <a href="https://hachyderm.io/@agionov" target="_blank" rel="noreferrer external noopener"
+                        class="slink tooltipped" data-position="bottom" data-tooltip="Mastodon">
+                        <i class="fa fa-brands fa-mastodon" style="font-size: 20px"></i></a>
+                    <a href="https://twitter.com/agionov" target="_blank" rel="noreferrer external noopener"
+                        class="slink tooltipped" data-position="bottom" data-tooltip="Twitter">
+                        <i class="fa fa-brands fa-twitter" style="font-size: 20px"></i></a>
+                    <a href="https://www.linkedin.com/in/agionov" target="_blank" rel="noreferrer external noopener"
+                        class="slink tooltipped" data-position="bottom" data-tooltip="LinkedIn">
+                        <i class="fa fa-brands fa-linkedin" style="font-size: 20px"></i></a>
+                    <a href="https://github.com/agyonov" target="_blank" rel="noreferrer external noopener"
+                        class="slink tooltipped" data-position="bottom" data-tooltip="GitHub">
+                        <i class="fa fa-brands fa-github" style="font-size: 20px"></i></a>
+                </div>
+            </div>
+            <div class="flex-item-grow">&nbsp;</div>
+            <div class="flex-item">
+                [
+                
+                <span class="langLink"><a href="/posts/angJsInitPartTwo/" class="slink tooltipped"
+                        data-position="top" data-tooltip="Български">БГ</a></span>
+                
+                <span class="langLink"><a href="/posts/angJsInitPartTwo/" class="slink tooltipped"
+                        data-position="top" data-tooltip="English">EN</a></span>
+                ]
+            </div>
+            <div class="flex-item wide">
+                <hr class="wide">
+                <a class="waves-effect waves-teal btn-flat light_button tooltipped" id="toggleLigth"
+                    data-position="right" data-tooltip="Светъл режим">
+                    <i class="material-icons">light_mode</i>
+                </a>
+                <a class="waves-effect waves-teal btn-flat hide tooltipped" id="toggleDark" data-position="right"
+                    data-tooltip="Тъмен режим">
+                    <i class="material-icons">dark_mode</i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m12 l9 xl10">
+        <div class="container">
+            
+<div class="post_content">
+    <h1>Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part Two.</h1>
+<h4>Feb 14, 2019</h4>
+<p><img src="/img/angJsInitPartTwo.jpg" alt="Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part Two."></p>
+<p>In the <a href="/posts/angJsInitPartOne/">first part of this post</a>, the discussion was focused mainly around the different methods of dynamic download of a third-party JavaScript library in an Angular application. Here in this second post, we will be discussing the ways in which we can “hook” to the initialization of the Angular application and fulfill our programming logic. For illustration I will continue to use the example application from the first part, which I will quote again in several places in the current post.</p>
+<p>The code for the example application is available at: <a href="https://github.com/agyonov/NgInitGA">https://github.com/agyonov/NgInitGA</a></p>
+<p>The app itself is live on: <a href="https://agyonov.github.io/NgInitGA">https://agyonov.github.io/NgInitGA</a></p>
+<p>For those who have not read the first part or have forgotten it, the example is using <em>Google Analytics</em> and to make the example more meaningful it is extended to allow for full tracking of users’ actions in the <em>Angular</em> application.</p>
+<p><strong>NB</strong>: As for tracking of users in <em>Angular</em> application, it has great, ready-made libraries, such as <a href="https://github.com/angulartics/angulartics2">angulartics</a>, which you can use. Here the question is not to create another such library, but with an example to show a possible solution to the two questions set at the beginning of this post!</p>
+<h2>“Hook” to initialization of an Angular application</h2>
+<p>I have found several methods to run your initialization program logic (your script) when launching the Angular application in the browser. I will list two of them in short, and the third one I will look at a little more closely.</p>
+<h3>1. Use the “forRoot” static method:</h3>
+<p>If you have a service in a separate Angular “feature” module, then perhaps the best and most established way is to use a static “forRoot” method. The method is called when you import your “feature” module into the main module of the Angular application.</p>
+<p>You can read in more detail <a href="https://angular.io/guide/singleton-services#forroot">here</a> and <a href="https://medium.com/@chrishouse/when-to-use-angulars-forroot-method-400094a0ebb7">here</a>.</p>
+<h3>2. Calling your script in the ngOnInit method of the main AppComponent:</h3>
+<p>The most direct and not complicated method is to run the script in the <em>ngOnInit</em> method of the main <em>AppComponent</em> in your <em>Angular</em> application. If it works, apply it. If we use the example from the first part of the publication, we have completed one method-“Loadscript”. This method should be called from your initialization code to start the download of third-party .js <em>Google Analytics</em> Library. In the app.component.ts code, this would appear as follows:</p>
+<pre><code class="language-TypeScript"><span class="hljs-meta">@Component</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-root&#x27;</span>,
+  <span class="hljs-attr">templateUrl</span>: <span class="hljs-string">&#x27;./app.component.html&#x27;</span>,
+  <span class="hljs-attr">styleUrls</span>: [<span class="hljs-string">&#x27;./app.component.scss&#x27;</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppComponent</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">OnInit</span> {
+
+  title = <span class="hljs-string">&#x27;NgInit&#x27;</span>;
+
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> gas: GoogleAnalyticsService</span>) {
+  }
+
+  <span class="hljs-title function_">ngOnInit</span>(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// Start down load of JS Library</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">gas</span>.<span class="hljs-title function_">loadScript</span>();
+  }
+}
+</code></pre>
+<p>Particularity, in the sample application and the use of Google analytics for illustration, this technique will work without any problems.</p>
+<p><strong>A recital against</strong> its possible use in other cases is that there would be situations <strong>where it would not have done</strong> the job ☹. These are the cases where all the initializing logic must have <strong>completed its execution before</strong> the start of the <em>ngOnInit</em> method execution or any other code from your application.</p>
+<p>An example, for such a situation, is to say when you have a mandatory user <strong>authentication</strong> and it must be completed, successful or not, before any other code from your Angular application is executed.</p>
+<p>The user authentication scenario, in an Angular application, is an interesting topic for which I can write a separate article in the future.</p>
+<h3>3. Using pre-defined in Angular tokens (the most interesting)</h3>
+<p>There is one way to “hook” to the <em>Angular</em> application initialization process, about which, I believe, the information from the <em>Angular</em> team is shared in an overly “modest” manner. These are the so-called predefined tokens and “Factory providers“. Information about them can be found <a href="https://angular.io/guide/dependency-injection-providers#predefined-tokens-and-multiple-providers">here</a> and <a href="https://angular.io/guide/dependency-injection-providers#factory-providers">here</a>.</p>
+<p>In the example application, this approach is implemented into the <em>app.module.ts</em> file, the main module of the Angular application.</p>
+<p>At the beginning we define “factory” function <strong>GoogleAnalyticsServiceFactory</strong> and export it! The latter is important from the perspective of <em>TypeScript</em> and AOT compiling the <em>Angular</em> application.</p>
+<p>The function itself must return another, internal function. That’s why it’s called factory 😊.</p>
+<p>The internal function that is returned by <strong>GoogleAnalyticsServiceFactory</strong> is your code that <strong>will be executed when initializing</strong> the <em>Angular</em> application. The inner function can return in result void or <em>Promise</em>.</p>
+<p><strong>Note</strong>: If it returns <em>Promise</em>, the <em>Angular</em> app will be blocked until <em>Promise</em> is resolved!</p>
+<p>The internal function gets as input parameter (via dependency-injection) service <strong>GoogleAnalyticsService</strong> and executes the <em>“loadScript”</em> method. That’s what we were aiming for!</p>
+<pre><code class="language-TypeScript"><span class="hljs-comment">// Factory provider for Angular. Provides function to be executed on Angular application </span>
+<span class="hljs-comment">//startup</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">GoogleAnalyticsServiceFactory</span> = (<span class="hljs-params">gas: GoogleAnalyticsService</span>) =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// download</span>
+    gas.<span class="hljs-title function_">loadScript</span>();
+  };
+};
+
+<span class="hljs-meta">@NgModule</span>({
+  <span class="hljs-attr">declarations</span>: [
+    <span class="hljs-title class_">AppComponent</span>,
+    <span class="hljs-title class_">SecondPageComponent</span>,
+    <span class="hljs-title class_">HomeComponent</span>
+  ],
+  <span class="hljs-attr">imports</span>: [
+    <span class="hljs-title class_">BrowserModule</span>,
+    <span class="hljs-title class_">AppRoutingModule</span>
+  ],
+  <span class="hljs-attr">providers</span>: [
+    <span class="hljs-comment">// Provides function to be executed on Angular application startup</span>
+    {
+      <span class="hljs-attr">provide</span>: <span class="hljs-variable constant_">APP_INITIALIZER</span>,
+      <span class="hljs-attr">useFactory</span>: <span class="hljs-title class_">GoogleAnalyticsServiceFactory</span>,
+      <span class="hljs-attr">deps</span>: [<span class="hljs-title class_">GoogleAnalyticsService</span>],
+      <span class="hljs-attr">multi</span>: <span class="hljs-literal">true</span>
+    }
+  ],
+  <span class="hljs-attr">bootstrap</span>: [<span class="hljs-title class_">AppComponent</span>]
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppModule</span> { }
+</code></pre>
+<p>In the <strong>providers</strong> array, when defining the <em>AppModule</em> main module of the <em>Angular</em> application, we figuratively “hook” the function defined above to the Angular startup process.</p>
+<p>This is done by using the pre-defined token <strong>APP_INITIALIZER</strong>. It identifies all provider marked with it to run before the <em>Angular</em> application is initialized!</p>
+<p>Note that as dependency (the array <strong>deps: [GoogleAnalyticsService]</strong>) are listed the parameters that Angular bootstrap process must instantiates and submit as parameters to the function that will run when the application starts!</p>
+<p>Аnd voila! This time for real 😊.</p>
+<h2>Example application</h2>
+<p>For assurance that the above code is working, you can look at the live sample application. Try it!</p>
+<p>The following code samples have also been added to the <strong>GoogleAnalyticsService</strong> service for accessing <em>Google Analytics</em>:</p>
+<pre><code class="language-TypeScript"><span class="hljs-comment">// Send page view event to Google Analytics</span>
+<span class="hljs-keyword">public</span> <span class="hljs-title function_">send</span>(<span class="hljs-attr">pageUrl</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+<span class="hljs-comment">// Send</span>
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">ga</span>(<span class="hljs-string">&#x27;set&#x27;</span>, <span class="hljs-string">&#x27;page&#x27;</span>, pageUrl);
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">ga</span>(<span class="hljs-string">&#x27;send&#x27;</span>, <span class="hljs-string">&#x27;pageview&#x27;</span>);
+}
+
+<span class="hljs-comment">// Send event tracking event to Google Analytics</span>
+<span class="hljs-keyword">public</span> <span class="hljs-title function_">event</span>(<span class="hljs-attr">eventCategory</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">eventAction</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span> {
+<span class="hljs-comment">// Send</span>
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">ga</span>(<span class="hljs-string">&#x27;send&#x27;</span>, <span class="hljs-string">&#x27;event&#x27;</span>, eventCategory, eventAction);
+}
+</code></pre>
+<p>These methods follow the instructions of <em>Google Analytics</em> to work with SPA applications.</p>
+<p>The methods are used by the Home, Second Page pages and the button Just an Event to send information to <em>Google Analytics</em> about the user’s actions.</p>
+<img src="/img/angJsInitPartTwo-image-2.png" width="800" height="600" style="display: block; margin: 0 auto" alt="angular SPA interaction">
+<p>It is visible from the above screen that:</p>
+<ol>
+<li>The script <em>analytics.js</em> is downloaded from the browser</li>
+<li>When transitioning from page to page and pressing the button, a post of data to the collect address of <em>Google Analytics</em>, occurs.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>In these two posts, I have tried to examine and describe in words and examples three different approaches to achieving the objectives of both topics:</p>
+<ul>
+<li>🔻Download the third-party JavaScript library in Angular application</li>
+<li>🔻“Hook” to the initializing of an Angular application</li>
+</ul>
+<p>I hope you have not been bored and that it will be helpful for you if you need to program things like above mentioned, to choose an approach that best serves you.</p>
+
+</div>
+        </div>
+    </div>
+</div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/light_dark.js"></script>
+    <script type="text/javascript" src="/js/layout.js"></script>
+</body>
+
+</html>

@@ -6889,6 +6889,9 @@ span.langLink a {
   background: #424242;
   color: #eeeeee;
 }
+.dark_body tr {
+  border-bottom: 1px solid rgba(222, 222, 222, 0.12);
+}
 
 .flex-container {
   display: flex;

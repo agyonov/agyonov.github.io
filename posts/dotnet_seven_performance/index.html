@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="description" content="My personal comparison on the basic performance of recently published dotnet 7.">
+    <meta name="description" content="My personal comparison on the basic performance of .NET 7">
     <meta name="referrer" content="origin">
     <meta name="content-security-policy" content="default-src 'none';script-src 'self' 'unsafe-inline';style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;img-src 'self';media-src 'none';frame-src 'self';font-src 'self' data: https://fonts.gstatic.com;connect-src https://cdnjs.cloudflare.com 'self';child-src 'self';form-action 'self';frame-ancestors 'self';manifest-src 'none';worker-src 'none'">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preconnect stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/brands.min.css"  rel="preconnect stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/railscasts.min.css" rel="preconnect stylesheet">
-    <title>Dotnet's 7 performance. Yet another test.</title>
+    <title>Dotnet's 7 performance. Another test.</title>
     <link rel="stylesheet" href="/css/site.css">
 </head>
 
@@ -163,10 +163,10 @@
         <div class="container">
             
 <div class="post_content">
-    <h1>My personal comparison on the basic performance of recently published dotnet 7.</h1>
+    <h1>My personal comparison on the basic performance of .NET 7</h1>
 <h4>Dec 4, 2022</h4>
-<p><img src="/img/combo_dotnet_js_rust.jpg" alt="My personal comparison on the basic performance of recently published dotnet 7."></p>
-<p>I was excited on general availability of dotnet 7, announced on the annual Build 2022 event. As you probably know it comes with many new and improved features
+<p><img src="/img/combo_dotnet_js_rust.jpg" alt="My personal comparison on the basic performance of .NET 7"></p>
+<p>I was excited on general availability of .NET 7, announced on the annual Build 2022 event. As you probably know it comes with many new and improved features
 in number of dotnet areas. In the presentations and announcements, one of the emphases was on performance of the new version of the framework. And there are some
 very good and in detail blog posts about particular bits in the platform that made for this performance improvement. What I mean are these:</p>
 <ul>
@@ -219,18 +219,17 @@ are going to show themselves in few simple programing tasks. So, I decided to do
 </tbody>
 </table>
 <h3>Comment on test 1</h3>
-<p>Clearly, .NET 7 is really fast at least compared to Rust for this kind of basic calculations.</p>
-<p>As for NodeJS, well it looks like it is like 1/3 slower, on this kind of work.</p>
+<p>Clearly, .NET 7 is really fast. At least compared to Rust for this kind of basic calculations.</p>
+<p>As for NodeJS, well it looks like it is ~ 1/3 slower, on this kind of work.</p>
 <p><strong>NB</strong> Please DO NOT extrapolate the above result on some comparisons like <em>ASP .NET Core vs Express</em> or something else - this is just basic calculation performance.
-In reality, for example if we look at a Web Framework it very much depends what you are doing in your Web APIs - if it is only simple async processing of request/result with data transfer of data stored in some background storage service I guess the times will be pretty much equal between these frameworks.
-But, If the Web APIs are doing some more complex calculations - images, PDFs and etc., it is quite possible that the difference between NodeJS and the other two become even bigger.</p>
+In reality, for example if we look at a Web Framework it very much depends what you are doing in your Web APIs - if it is only simple async processing of request/result with data transfer of data stored in some background storage service then I guess the times will be pretty much equal between these frameworks.
+But, If the Web APIs are doing some more complex calculations - images, PDFs and etc., then it is quite possible that the difference between NodeJS and the other two become even bigger.</p>
 <h2>2. A little bit more complex work - just for .NET and RUST. JSON Serialization and De-serialization</h2>
-<p>After the basic test it looks like the performance of <em>.NET 7</em> and <em>RUST</em> is quite equal? But this is just a basic test. Let's do some more complex and let us play
-with some JSON de-serialization / serialization.
-As a side note - handling JSON data is quite important now-a-days and there were also statements from <em>Microsoft</em> that in recent versions of <em>.NET</em> there has been a lot of improvement in JSON handling area with so-called <strong>Source generators</strong>.</p>
+<p>After the basic test it looks like the performance of <em>.NET 7</em> and <em>RUST</em> is quite equal? But this is just a basic test. Let's do something little bit more complex and let us play with some JSON de-serialization / serialization.</p>
+<p>As a side note - handling JSON data is quite important now-a-days and there were also statements from <em>Microsoft</em> that in recent versions of <em>.NET</em> there has been a lot of improvement in JSON handling area with so-called <strong>Source generators</strong>.</p>
 <p>The task is to have a simple program that:</p>
 <ol>
-<li>Gets a file of JSON data 25M</li>
+<li>Gets a file of JSON data - 25Mb</li>
 <li>De-serialize this data in memory</li>
 <li>Serialize this data back to JSON</li>
 </ol>
@@ -286,7 +285,7 @@ As a side note - handling JSON data is quite important now-a-days and there were
 </table>
 <h3>Comment on test 2</h3>
 <p>Well, .NET 7 is not that fast compared to Rust for JSON handling.</p>
-<p>Especially in De-serialization it is like 1/2 slower. In Serialization it is ~ 1/4 slower. Great job from <em>.NET</em> community so far, but clearly there is more
+<p>Especially in De-serialization it is like ~ 1/2 slower. In Serialization it is ~ 1/4 slower. Great job from <em>.NET</em> community so far, but clearly there is more
 work to be done 😊 ...</p>
 <p>And, I guess this is not related only to pure handling of the JSON data, but more or less with memory allocation - because of differences between serialization and de-serialization performance gaps. Actually, it is quite normal as <em>RUST</em> does not rely on Garbage collection, whereas <em>.NET</em> does.</p>
 <p><strong>NB</strong> As I have mention memory - The above tests measure (for now) pure performance in time, they do not measure memory used by the different languages for performing the test tasks.</p>

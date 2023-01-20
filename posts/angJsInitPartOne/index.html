@@ -44,9 +44,9 @@
     <li>
         <div class="user-view">
             <div class="background" id="sidenav_header">
-                <img src="/img/side_background.jpg" alt="me_background">
+                <img src="/img/side_background.webp" alt="me_background">
             </div>
-            <a href="/"><img src="/img/art_normal_small.png" alt="Александър Гьонов"
+            <a href="/"><img src="/img/art_normal_small.webp" alt="Александър Гьонов"
                     class="circle responsive-img"></a>
             <a href="/"><span class="white-text name">Здрасти, аз съм Сашо</span></a>
         </div>
@@ -115,7 +115,7 @@
         <div class="flex-container" id="divLeftPane">
             <div class="flex-item">
                 <div class="space_above">&nbsp;</div>
-                <img src="/img/art_normal_small.png" alt="Александър Гьонов" class="circle responsive-img">
+                <img src="/img/art_normal_small.webp" alt="Александър Гьонов" class="circle responsive-img">
                 <h5>Здрасти, аз съм Сашо</h5>
             </div>
             <div class="flex-item">
@@ -165,7 +165,7 @@
 <div class="post_content">
     <h1>Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part One.</h1>
 <h4>Feb 7, 2019</h4>
-<p><img src="/img/angJsInitPartOne.jpg" alt="Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part One."></p>
+<p><img src="/img/angJsInitPartOne.webp" alt="Download of a third-party JavaScript library and a way to “hook” to the initialization of the Angular application. Example with Analytics.js. Part One."></p>
 <p>For a while, in my professional work, I have been developing software applications using Angular. In a few cases I have faced questions about how one or other thing could have happened and I have not found a quick and unambiguous answer for myself. In this post I will discuss two interesting things of this nature:</p>
 <ol>
 <li>How dynamically, from Angular, to “download” in the app third-party JavaScript libraries</li>
@@ -202,7 +202,7 @@ ga.<span class="hljs-property">l</span>=+<span class="hljs-keyword">new</span> <
 <p>It’s OK as an approach and will also work in <strong>its part to download the .js library</strong>. In addition, here the objections which were valid for the first decision are irrelevant.</p>
 <p><strong>A consideration</strong> against its possible use is stylistic – not a “clean” <em>Angular</em> solution.</p>
 <p>The rest of the code snip from <em>Google Analytics</em>, shown above, <strong>does not work for us at all</strong>! Because with <em>Angular</em> we have a <strong>Single page Application</strong> (SPA) where, unlike traditional web applications, in reality only the first page is loaded from the Web server and subsequently every transition from page to page, occurs only inside the SPA application in the browser. Also, if we have any special events (e.g. button press) they as well occur inside the <em>Angular</em> app and will not affect the data in <em>Google Analytics</em>.</p>
-<img src="/img/angJsInitPartOne-image-2.png" width="800" height="600" style="display: block; margin: 0 auto" alt="angular SPA interaction">
+<img src="/img/angJsInitPartOne-image-2.webp" width="800" height="600" style="display: block; margin: 0 auto" alt="angular SPA interaction">
 <p>These issues are discussed in detail in the <em>Google Analytics</em> documentation itself under the <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications">Single Page Application Tracking</a> topic.</p>
 <p>Let’s get back to the issue with the dynamic download of the JavaScript library. There is a <strong>third method</strong> that I will look at. Because the example is using Google Analytics, I’ll expand it to be used to track users’ actions in the Angular app.</p>
 <p><strong>Note</strong>: As for tracking of users in Angular application, it has great, ready-made libraries, such as <em>angulartics</em>, which you can use. Here the question is not to create another such library, but to illustrate with an example a possible solution to the two questions set at the beginning of this post!</p>

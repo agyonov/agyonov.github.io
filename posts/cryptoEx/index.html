@@ -1,8 +1,8 @@
-<!doctype html><html lang="bg"><head>
+<!doctype html><html lang="en"><head>
     <meta charset="utf-8">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="description" content="Личната страница на Александър Гьонов.">
+    <meta name="description" content="Part One of - Extending the standard cryptographic capabilities of .NET platform. Managing XAdES and JAdES.">
     <meta name="referrer" content="origin">
     <meta name="content-security-policy" content="default-src 'none';script-src 'self' 'unsafe-inline';style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;img-src 'self';media-src 'none';frame-src 'self';font-src 'self' data: https://fonts.gstatic.com;connect-src https://cdnjs.cloudflare.com 'self';child-src 'self';form-action 'self';frame-ancestors 'self';manifest-src 'none';worker-src 'none'">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preconnect stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"  rel="preconnect stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/railscasts.min.css" rel="preconnect stylesheet">
-    <title>За Александър Гьонов</title>
+    <title>Working with XML & JSON Advanced Electronic Signatures (XAdES and JAdES) in .NET</title>
     <link rel="stylesheet" href="/css/site.css">
 </head>
 
@@ -31,7 +31,7 @@
                 </li>
                 
                 
-                <li><a href="/bg/about/" class="current" >ЗА МЕН</a>
+                <li><a href="/bg/about/" >ЗА МЕН</a>
                 </li>
                 
             </ul>
@@ -60,7 +60,7 @@
     
     
     <li>
-        <a href="/bg/about/" class="current" ><i
+        <a href="/bg/about/" ><i
                 class="material-icons">person</i>ЗА МЕН</a>
     </li>
     
@@ -91,20 +91,20 @@
     <li><a class="subheader">Език</a></li>
     <li>
         
-        <a href="/bg/about/"><i class="material-icons">language</i>Български</a>
+        <a href="/posts/cryptoEx/"><i class="material-icons">language</i>Български</a>
         
     </li>
     <li>
-        <a href="/en/about/"><i class="material-icons">language</i>English</a>
+        <a href="/posts/cryptoEx/"><i class="material-icons">language</i>English</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li><a class="subheader">Тема</a></li>
     <li>
-        <a href="/bg/about/" id="toggleLigthM">
+        <a href="/posts/cryptoEx/" id="toggleLigthM">
             <i class="material-icons">light_mode</i>Светъл режим</a>
-        <a href="/bg/about/" class="hide" id="toggleDarkM">
+        <a href="/posts/cryptoEx/" class="hide" id="toggleDarkM">
             <i class="material-icons">dark_mode</i>Тъмен режим</a>
     </li>
 </ul>
@@ -139,10 +139,10 @@
             <div class="flex-item">
                 [
                 
-                <span class="langLink"><a href="/bg/about/" class="slink tooltipped"
+                <span class="langLink"><a href="/posts/cryptoEx/" class="slink tooltipped"
                         data-position="top" data-tooltip="Български">БГ</a></span>
                 
-                <span class="langLink"><a href="/en/about/" class="slink tooltipped"
+                <span class="langLink"><a href="/posts/cryptoEx/" class="slink tooltipped"
                         data-position="top" data-tooltip="English">EN</a></span>
                 ]
             </div>
@@ -162,52 +162,57 @@
     <div class="col s12 m12 l9 xl10">
         <div class="container">
             
-<div class="indexPic">
-    <h1>За мен</h1>
-    <img class="responsive-img" src="/img/about.webp" alt="Александър Гьонов">
+<div class="post_content">
+    <h1>Need for Advanced Electronic Signatures for XML and JSON - XAdES and JAdES in C# / .NET</h1>
+<p>During the last year I was working on a project, which included development of functionalities related to creation and validation of <em>Advanced Electronic Signatures for XML and JSON - XAdES and JAdES</em>. These are part of the larger eIDAS EU regulation.</p>
+<p>The project itself was implemented in .NET. When working with .NET in this area I have realized that the .NET platform has some gaps both in implemented needed base platform functionalities and in documentation and examples.</p>
+<p>So - I created a library to facilitate may team working on the main project. Also, library that may be
+used as a reference (or example if you prefer) of how to achieve some tasks using platform's
+abilities in some areas and how to extend minor platform's gaps in other areas, to be in help for the broader developers community.</p>
+<p>I have published the library <strong><a href="https://www.nuget.org/packages/CryptoEx/">CryptoEx</a></strong> as a NuGET package.</p>
+<p>The code of the library is publicly available at Github at: <strong><a href="https://github.com/agyonov/CryptoEx">CryptoEx</a></strong>.</p>
+<h2>XML Advanced Electronic Signatures in C# / .NET</h2>
+<p>There is mature (and not very much evolving) library
+provided by the platform itself - <a href="https://www.nuget.org/packages/System.Security.Cryptography.Xml/">System.Security.Cryptography.Xml</a>,
+but in my personal experience there are two major issues with it:</p>
+<ol>
+<li>
+<p>Examples and documentation are messy - You may easily see from Microsoft's docs how to do
+basic sign / verify of an enveloped XML message, but you will be in trouble finding &quot;official&quot;
+docs and examples on some more advanced scenarios, like - <em>detached</em> signatures or signing
+additional <em>Reference</em> XML data.</p>
+</li>
+<li>
+<p>The basic library also lacks some algorithms that are part of the XML digital signature
+specification - namely the ones with EcDSA.</p>
+</li>
+<li>
+<p>There is specific <em>knowledge</em>, e.g. rules that come with the XAdES. In the same time there are no available, easily accessible examples and documentation that cover implementing the additional XAdES requirements in .NET / C#.</p>
+</li>
+</ol>
+<p>Now this might be annoying flaws, but also they are to some extend either &quot;natural&quot; (the all possible
+implementations, ways to implement XML signing, is vast area, because of the &quot;openness&quot; of the
+specification) or easy to overcome. So, in the current project I have extended the standard
+library to support the missing algorithms and have provided some implementations to show,
+as an example, how to sign <em>Detached</em> data and additional <em>Reference</em> XML elements.</p>
+<p>You can check the code and some pages in the <a href="https://github.com/agyonov/CryptoEx/wiki">Wiki</a> of the CryptoEx project.</p>
+<p>You can freely use it as an example and further amend or extend the code to suit your particular
+needs as possible applications are vast.</p>
+<h2>JSON Advanced Electronic Signatures in C# / .NET</h2>
+<p>In this domain there are few open source
+libraries, but either their focus is JSON Web Tokens (that are private case of the broader JSON
+Web Signatures) or they are limited in application for <a href="https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.01.01_60/ts_11918201v010101p.pdf">jAdES</a>.</p>
+<p>I haven't been able to find a library (for .NET / C#), that focus solely on the <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC 7515 (JSON Web Signatures)</a> and that is easily extendable to be used with <em>JAdES</em></p>
+<p>Here, as with XMLs, there is specific <em>knowledge</em>, e.g. rules that come with the <em>JAdES</em>. In the same time there are no available, easily accessible examples and documentation that cover implementing the additional JAdES requirements in .NET / C#.</p>
+<p>In the <strong><a href="https://www.nuget.org/packages/CryptoEx/">CryptoEx</a></strong> library you can find an implementation of the <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC 7515 (JSON Web Signatures)</a>
+specification and practical implementation for the European Union's <em>Advanced electronic signatures</em> for JSON data specification
+(<a href="https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.01.01_60/ts_11918201v010101p.pdf">JAdES</a>),
+that builds on top of <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC 7515 (JSON Web Signatures)</a>.</p>
+<p>Please, check the code and the corresponding <a href="https://github.com/agyonov/CryptoEx/wiki">Wiki Pages</a>.</p>
+<p>Again, you are free and encouraged to use these as an example or to extend these to suit you
+purposes in a better way.</p>
+
 </div>
-
-<p class="flow-text justify">
-    Казвам се Александър Иванов Гьонов и работя като софтуерен разработчик, а напоследък и като софтуерен архитект,
-    в София България.
-</p>
-
-<p class="flow-text justify">
-    Този сайт е личната ми страница, в която има информация за мен, както и някои мои блог публикации.
-    Създадох тази страница, защото в един момент почувствах, че искам да имам такава, без някакви специални други цели.
-    <br>
-    Просто място, което да се появява в интернет, когато някой ме потърси.
-    <br>Да имам сайт, в който когато от време на
-    време публикувам нещо, то да e в страница, която "притежавам" - за да притежавам думите си.
-</p>
-
-<h2>Основното</h2>
-<p class="flow-text justify">
-    Занимавам се с програмиране от много години, професионално от 1998 година. Работил съм в различни сфери - банкови
-    транзакции,
-    управление на електро-енергийната система, телекомуникации, корпоративни системи в държавната администрация и
-    обществени организации.
-    С десктоп приложения, клиент-сървър приложения, уеб системи, разпределени системи, мобилни приложения и напоследък
-    микросервизи. 
-    <br><br>
-    Full-stack.
-</p>
-<p class="flow-text justify">
-    Никога да не спирам да се интересувам от най-новото в света на софтуерните технологии и да го прилагам в проектите,
-    в които участвам.
-    Това ми доставя удоволствие и ме кара да се чувствам жив.
-</p>
-
-<h2>Био - малко скучни работи</h2>
-<p class="flow-text justify">
-    Роден съм в София и живея в София.
-    <br><br>
-    Завършил съм Софийската Математическа Гимназия (СМГ) и Софийския Университет "Св. Климент Охридски" - Факултет по математика и информатика (ФМИ).
-    <br><br>
-    Баща на един син. Съпруг на една жена. <i class="material-icons">mood</i>
-    <br><br>
-    Интересувам се от и практикувам с различен успех - ски, тенис и лов. 
-</p>
         </div>
     </div>
 </div>

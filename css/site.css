@@ -7094,4 +7094,22 @@ div.post_content pre {
   overflow-x: auto;
 }
 
+.flex-container-blog {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+}
+
+.flex-item-blog {
+  flex: 40%;
+  display: block;
+}
+
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 768px) or ((min-width: 992px) and (max-width: 1280px)) {
+  .flex-item-blog {
+    flex: 100%;
+  }
+}
+
 /*# sourceMappingURL=site.css.map */

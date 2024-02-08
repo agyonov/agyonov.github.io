@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="description" content="Part One of - Extending the standard cryptographic capabilities of .NET platform. Managing XAdES and JAdES.">
+    <meta name="description" content="Part Two of - Extending the standard cryptographic capabilities of .NET platform. Managing Ed25519 & Ed448 and X25519 & X448. Enablement of EdDSA in JWS and JAdES in .NET.">
     <meta name="referrer" content="origin">
     <meta name="content-security-policy" content="default-src 'none';script-src 'self' 'unsafe-inline';style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;img-src 'self';media-src 'none';frame-src 'self';font-src 'self' data: https://fonts.gstatic.com;connect-src https://cdnjs.cloudflare.com 'self';child-src 'self';form-action 'self';frame-ancestors 'self';manifest-src 'none';worker-src 'none'">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preconnect stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"  rel="preconnect stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/railscasts.min.css" rel="preconnect stylesheet">
-    <title>Working with XML & JSON Advanced Electronic Signatures (XAdES and JAdES) in .NET</title>
+    <title>Working with Ed25519 & Ed448 cryptographic algorithms for digital signatures (JWS) and X25519 & X448 algorithms for Diffie-Hellman key agreement in .NET</title>
     <link rel="stylesheet" href="/css/site.css">
 </head>
 
@@ -91,20 +91,20 @@
     <li><a class="subheader">Език</a></li>
     <li>
         
-        <a href="/posts/cryptoEx/"><i class="material-icons">language</i>Български</a>
+        <a href="/posts/cryptoEx.Ed/"><i class="material-icons">language</i>Български</a>
         
     </li>
     <li>
-        <a href="/posts/cryptoEx/"><i class="material-icons">language</i>English</a>
+        <a href="/posts/cryptoEx.Ed/"><i class="material-icons">language</i>English</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li><a class="subheader">Тема</a></li>
     <li>
-        <a href="/posts/cryptoEx/" id="toggleLigthM">
+        <a href="/posts/cryptoEx.Ed/" id="toggleLigthM">
             <i class="material-icons">light_mode</i>Светъл режим</a>
-        <a href="/posts/cryptoEx/" class="hide" id="toggleDarkM">
+        <a href="/posts/cryptoEx.Ed/" class="hide" id="toggleDarkM">
             <i class="material-icons">dark_mode</i>Тъмен режим</a>
     </li>
 </ul>
@@ -139,10 +139,10 @@
             <div class="flex-item">
                 [
                 
-                <span class="langLink"><a href="/posts/cryptoEx/" class="slink tooltipped"
+                <span class="langLink"><a href="/posts/cryptoEx.Ed/" class="slink tooltipped"
                         data-position="top" data-tooltip="Български">БГ</a></span>
                 
-                <span class="langLink"><a href="/posts/cryptoEx/" class="slink tooltipped"
+                <span class="langLink"><a href="/posts/cryptoEx.Ed/" class="slink tooltipped"
                         data-position="top" data-tooltip="English">EN</a></span>
                 ]
             </div>
@@ -163,54 +163,39 @@
         <div class="container">
             
 <div class="post_content">
-    <h1>Need for Advanced Electronic Signatures for XML and JSON - XAdES and JAdES in C# / .NET</h1>
-<p>Last year I was working on a project, which included development of functionalities related to creation and validation of <em>Advanced Electronic Signatures for XML and JSON - XAdES and JAdES</em>. These are part of the larger eIDAS EU regulation.</p>
-<p>The project itself was implemented in .NET. While working with .NET in this area I have realized that the .NET platform has some gaps both as unimplemented, but needed, base platform functionalities and in documentation and examples.</p>
-<p>So - I created a library to facilitate my team working on the main project. Also, library that may be
-used as a reference (or example if you prefer) of how to achieve some tasks using .NET platform's
-abilities in some areas and how to extend minor .NET platform's gaps in other areas, to be in help for the broader developers community.</p>
-<p>I have published the library <strong><a href="https://www.nuget.org/packages/CryptoEx/">CryptoEx</a></strong> as a NuGET package.</p>
-<p>The code of the library is publicly available at Github at: <strong><a href="https://github.com/agyonov/CryptoEx">CryptoEx</a></strong>.</p>
-<h2>XML Advanced Electronic Signatures in C# / .NET</h2>
-<p>There is mature (and not very much evolving) library
-provided by the .NET platform itself - <a href="https://www.nuget.org/packages/System.Security.Cryptography.Xml/">System.Security.Cryptography.Xml</a>,
-but in my personal experience there are few issues with it:</p>
+    <h1>Ed25519, Ed448, X25519 &amp; X448 Algorithms in .NET similar way</h1>
+<p>As the <strong><a href="https://www.agyonov.net/posts/cryptoEx/">CryptoEx</a> library</strong> evolved there occurred natural need to bring Ed cryptographic algorithms to it, more specifically to the JSON electronic signatures part (as XMLs electronic signatures are not yet specified for Ed algorithms).</p>
+<p>And I have implemented and published as second library <strong><a href="https://www.nuget.org/packages/CryptoEx.Ed/">CryptoEx.Ed</a></strong> - extension of the logic in the core library (CryptoEx) to support Ed25519 &amp; Ed448 cryptographic algorithms for digital signatures and X25519 &amp; X448 algorithms for Diffie-Hellman key agreement. The library also implements JWSs (JSON Web signatures) and jAdES (Advanced JSON Web Signatures) with EdDSA algorithm.</p>
+<p>The goal was to implement the algorithms for Ed25519, Ed448, X25519 and X488 in a .NET similar way. The issue is that these algorithms, currently, are not implemented in .NET &quot;standard&quot; libraries. It is understandable as the &quot;standard&quot; .NET approach is to rely on specific/basic cryptographic libraries, provided by the underlying operating system. Such as:</p>
+<ul>
+<li>CNG for Windows</li>
+<li>OpenSSL for Linux</li>
+<li>on Mac OS I am not sure what is used lately...</li>
+</ul>
+<blockquote>
+<p>As a side note - OpenSSL does support Ed algorithms, but this support have not yet been ported to .NET.</p>
+</blockquote>
+<p>There are also other libraries that provide support for Ed algorithms in .NET, such as:</p>
+<ul>
+<li>BouncyCastle</li>
+<li><em>libsodium</em> based wrappers</li>
+</ul>
+<p>But, they do implement Ed stuff in a API-wise way different from what is the approach in mainstream .NET. So, I have decided to implement the algorithms in a similar way to what is done in .NET.</p>
+<p>It must be said that <strong>the core implementation of the cryptographic algorithms, in current project, comes from Bouncy Castle</strong> project. I have just added some <em>facade</em> classes to adjust the API surface to be more <em>.NET way</em> similar. This is done deliberately, based on the following:</p>
 <ol>
-<li>
-<p>Examples and documentation are messy - You may easily see from Microsoft's docs how to do
-basic sign / verify of an enveloped XML message, but you will be in trouble finding &quot;official&quot;
-docs and examples on some more advanced scenarios, like - <em>detached</em> signatures or signing
-additional <em>Reference</em> XML data.</p>
-</li>
-<li>
-<p>The basic library also lacks some algorithms that are part of the XML digital signature
-specification - namely the ones with EcDSA.</p>
-</li>
-<li>
-<p>There is specific <em>knowledge</em>, e.g. rules that come with XAdES. In the same time there are no available, easily accessible examples and documentation that cover implementing the additional XAdES requirements in .NET / C#.</p>
-</li>
+<li>Implementation of the cryptographic algorithms is not trivial. It is better to rely on well tested and proven code.</li>
+<li>Besides, it is not a matter to just implement the core algorithm logic, but also to maintain it. This, also, is not a trivial task in terms of organization and resources.</li>
+<li>Putting several classes, as a <code>facade</code>, in front of the core implementation allows to achieve the goal of having the API surface similar to the one in .NET and to have the core implementation separated from the facade, but still be a well developed and maintained.</li>
 </ol>
-<p>Now this might be annoying flaws, but also they are to some extend either &quot;natural&quot; (the all possible
-implementations, ways to implement XML signing, is vast area, because of the &quot;openness&quot; of the
-specification) or easy to overcome. So, in the <em>CryptoEx</em> library I have extended the standard
-platform's capabilities to support the missing algorithms and have provided some implementations to show,
-as an example, how to sign <em>Detached</em> data and additional <em>Reference</em> XML elements.</p>
-<p>You can check the code and some pages in the <a href="https://github.com/agyonov/CryptoEx/wiki">Wiki</a> of the CryptoEx project.</p>
-<p>You can freely use it as an example and further amend or extend the code to suit your particular
+<p>I do believe the above is a good, balanced approach.</p>
+<p><strong>And, eventually when support for Ed25519, Ed448, X25519 and X448, comes to standard .NET, the dependency on Bouncy Castle can be removed without affecting seriously the client logic that uses the new API.</strong></p>
+<p>For the basic usage of , you can look for more technical details in the following Wiki page - <a href="https://github.com/agyonov/CryptoEx/wiki/Ed-Algorithms-in-Dotnet-similar-way">Ed Algorithms in Dotnet similar way</a>.</p>
+<h2>EdDSA for JWS and JAdES</h2>
+<p>Also, I have extended the <strong>JWS</strong> and <strong>JAdES</strong> classes from the <a href="https://www.agyonov.net/posts/cryptoEx/">CryptoEx</a> library to support the Ed algorithms for these types of electronic signatures.</p>
+<p>You can read another Wiki page about this - <a href="https://github.com/agyonov/CryptoEx/wiki/EdDSA-for-JWS-&amp;-jAdES">EdDSA for JWS and JAdES</a>.</p>
+<h2>Usage</h2>
+<p>You can freely use the library in your projects or just use it as an example and further amend or extend the code to suit your particular
 needs as possible applications are vast.</p>
-<h2>JSON Advanced Electronic Signatures in C# / .NET</h2>
-<p>In this domain there are few open source
-libraries, but either their focus is JSON Web Tokens (that are private case of the broader JSON
-Web Signatures area) or they are limited in application for <a href="https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.01.01_60/ts_11918201v010101p.pdf">jAdES</a>.</p>
-<p>I haven't been able to find a library (for .NET / C#), that focus primary on the <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC 7515 (JSON Web Signatures)</a> and that is easily extendable to be used with <em>JAdES</em></p>
-<p>Here, as with XMLs, there is specific <em>knowledge</em>, e.g. rules that come with the <em>JAdES</em>. In the same time there are no available, easily accessible examples and documentation that cover implementing the additional JAdES requirements in .NET / C#.</p>
-<p>In the <strong><a href="https://www.nuget.org/packages/CryptoEx/">CryptoEx</a></strong> library you can find an implementation of the <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC 7515 (JSON Web Signatures)</a>
-specification and practical implementation for the European Union's <em>Advanced electronic signatures for JSON</em> data specification
-(<a href="https://www.etsi.org/deliver/etsi_ts/119100_119199/11918201/01.01.01_60/ts_11918201v010101p.pdf">JAdES</a>),
-that builds on top of <a href="https://www.rfc-editor.org/rfc/rfc7515.html">RFC 7515 (JSON Web Signatures)</a>.</p>
-<p>Please, check the code and the corresponding <a href="https://github.com/agyonov/CryptoEx/wiki">Wiki Pages</a>.</p>
-<p>Again, you are free and encouraged to use these as an example or to extend these to suit you
-purposes in a better way.</p>
 
 </div>
         </div>

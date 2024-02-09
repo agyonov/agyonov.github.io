@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="preconnect stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"  rel="preconnect stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/railscasts.min.css" rel="preconnect stylesheet">
-    <title>Working with Ed25519 & Ed448 cryptographic algorithms for digital signatures (JWS) and X25519 & X448 algorithms for Diffie-Hellman key agreement in .NET</title>
+    <title>EdDSA for JSON digital signatures (JWS,JAdES) and X25519 & X448 algorithms for Diffie-Hellman key agreement in .NET</title>
     <link rel="stylesheet" href="/css/site.css">
 </head>
 
@@ -165,7 +165,7 @@
 <div class="post_content">
     <h1>Ed25519, Ed448, X25519 &amp; X448 Algorithms in .NET similar way</h1>
 <p>As the <strong><a href="https://www.agyonov.net/posts/cryptoEx/">CryptoEx</a> library</strong> evolved there occurred natural need to bring Ed cryptographic algorithms to it, more specifically to the JSON electronic signatures part (as XMLs electronic signatures are not yet specified for Ed algorithms).</p>
-<p>And I have implemented and published as second library <strong><a href="https://www.nuget.org/packages/CryptoEx.Ed/">CryptoEx.Ed</a></strong> - extension of the logic in the core library (CryptoEx) to support Ed25519 &amp; Ed448 cryptographic algorithms for digital signatures and X25519 &amp; X448 algorithms for Diffie-Hellman key agreement. The library also implements JWSs (JSON Web signatures) and jAdES (Advanced JSON Web Signatures) with EdDSA algorithm.</p>
+<p>And I have implemented and published as second library <strong><a href="https://www.nuget.org/packages/CryptoEx.Ed/">CryptoEx.Ed</a></strong> - extension of the logic in the core library (CryptoEx) to support Ed25519 &amp; Ed448 cryptographic algorithms for digital signatures and X25519 &amp; X448 algorithms for Diffie-Hellman key agreement. The library also implements JWSs (JSON Web signatures) and JAdES (Advanced JSON Web Signatures) with EdDSA algorithm.</p>
 <p>The goal was to implement the algorithms for Ed25519, Ed448, X25519 and X488 in a .NET similar way. The issue is that these algorithms, currently, are not implemented in .NET &quot;standard&quot; libraries. It is understandable as the &quot;standard&quot; .NET approach is to rely on specific/basic cryptographic libraries, provided by the underlying operating system. Such as:</p>
 <ul>
 <li>CNG for Windows</li>

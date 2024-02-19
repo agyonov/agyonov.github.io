@@ -1,0 +1,28 @@
+{
+	"subject": "acct:agionov@hachyderm.io",
+	"aliases": [
+		"https://hachyderm.io/@agionov",
+		"https://hachyderm.io/users/agionov"
+	],
+	"links": [
+		{
+			"rel": "http://webfinger.net/rel/profile-page",
+			"type": "text/html",
+			"href": "https://hachyderm.io/@agionov"
+		},
+		{
+			"rel": "self",
+			"type": "application/activity+json",
+			"href": "https://hachyderm.io/users/agionov"
+		},
+		{
+			"rel": "http://ostatus.org/schema/1.0/subscribe",
+			"template": "https://hachyderm.io/authorize_interaction?uri={uri}"
+		},
+		{
+			"rel": "http://webfinger.net/rel/avatar",
+			"type": "image/png",
+			"href": "https://media.hachyderm.io/accounts/avatars/109/380/350/364/516/953/original/d8279daeec9b5500.png"
+		}
+	]
+}

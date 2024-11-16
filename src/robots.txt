@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /NgInitGA/
+Disallow: /Fragments/
+Disallow: /dotnetcompare/
+Allow: /
+Sitemap: https://www.agyonov.net/sitemap.xml
